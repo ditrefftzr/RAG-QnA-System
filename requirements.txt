@@ -1,0 +1,36 @@
+# ============================================================================
+# RAG Job Application Optimizer - Dependencies
+# ============================================================================
+
+# Core LangChain Framework
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.1.0
+langchain-text-splitters>=0.1.0
+
+# Google AI Integration
+langchain-google-genai>=2.0.0
+google-genai>=0.8.0  # New API package (migrated from google-generativeai)
+
+# Vector Database
+chromadb>=0.4.0
+
+# Document Processing
+pypdf>=4.0.0          # PDF reading
+python-docx>=1.0.0    # Word document generation (.docx)
+tiktoken>=0.6.0       # Token counting for chunking
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# Data Processing (used in projects, analysis)
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Core Dependencies (required by LangChain/Google AI)
+pydantic>=2.0.0
+requests>=2.31.0
+
+# Optional: Development & Testing
+jupyter>=1.0.0        # For notebooks
+ipykernel>=6.20.0     # Jupyter kernel
