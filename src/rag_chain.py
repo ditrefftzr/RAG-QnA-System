@@ -12,7 +12,7 @@ from datetime import datetime
 
 # Add parent directory to path to import config
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from config import get_logger, MODEL_CONFIG, RETRIEVAL_CONFIG
+from config import get_logger, MODEL_CONFIG, RETRIEVAL_CONFIG, GENERATION_CONFIG
 
 from src.vector_store import VectorStoreManager
 from src.question_classifier import QuestionClassifier
@@ -214,7 +214,12 @@ Include specific projects, technologies, and achievements with metrics.
         try:
             response = self.client.models.generate_content(
                 model=self.model_name,
-                contents=prompt
+                contents=prompt,
+                config={
+                    'temperature': GENERATION_CONFIG['temperature'],
+                    'max_output_tokens': GENERATION_CONFIG['max_tokens'],
+                    'top_p': GENERATION_CONFIG['top_p'],
+                }
             )
             answer = response.text
             logger.info("Answer generated successfully")

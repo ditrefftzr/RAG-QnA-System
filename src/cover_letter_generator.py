@@ -16,7 +16,7 @@ import json
 
 # Add parent directory to path to import config
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from config import get_logger, MODEL_CONFIG, PATHS
+from config import get_logger, MODEL_CONFIG, PATHS, GENERATION_CONFIG
 
 from src.rag_chain import RAGChain
 from src.vector_store import VectorStoreManager
@@ -86,7 +86,12 @@ JSON:"""
         try:
             response = self.client.models.generate_content(
                 model=self.model_name,
-                contents=extraction_prompt
+                contents=extraction_prompt,
+                config={
+                    'temperature': GENERATION_CONFIG['temperature'],
+                    'max_output_tokens': GENERATION_CONFIG['max_tokens'],
+                    'top_p': GENERATION_CONFIG['top_p'],
+                }
             )
             
             # Get the response text
@@ -206,7 +211,12 @@ JSON:"""
         try:
             response = self.client.models.generate_content(
                 model=self.model_name,
-                contents=extraction_prompt
+                contents=extraction_prompt,
+                config={
+                    'temperature': GENERATION_CONFIG['temperature'],
+                    'max_output_tokens': GENERATION_CONFIG['max_tokens'],
+                    'top_p': GENERATION_CONFIG['top_p'],
+                }
             )
             
             response_text = response.text.strip()
@@ -453,7 +463,12 @@ JSON:"""
 
         response = self.client.models.generate_content(
             model=self.model_name,
-            contents=prompt
+            contents=prompt,
+            config={
+                'temperature': GENERATION_CONFIG['temperature'],
+                'max_output_tokens': GENERATION_CONFIG['max_tokens'],
+                'top_p': GENERATION_CONFIG['top_p'],
+            }
         )
         cover_letter_text = response.text.strip()
 
